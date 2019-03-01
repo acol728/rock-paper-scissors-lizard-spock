@@ -1,6 +1,13 @@
-# rpsls
-Rock paper scissors lizard spock project
+# Rock Paper Scissors Lizard Spock
 
-Something I did in my freetime, older project
+RPSLS is a basic game project I work on in my freetime
 
-Basic HTML CSS and Javascript used
+## Built with
+
+* HTML5
+* CSS
+* Javascript
+
+## Running
+
+Just download zip, extract and open HTML file
