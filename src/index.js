@@ -1,4 +1,5 @@
 var choices = ["rock", "paper", "scissors", "lizard", "spock"];
+var state = "state0";
 
 //Arrays to determine which strings beat which string
 var beatsrock = ["paper", "spock"];
@@ -8,9 +9,9 @@ var beatslizard = ["scissors", "rock"];
 var beatsspock = ["lizard", "paper"];
 
 //5 images to cycle
-var imgChoices = ["url(../assets/rock.png)", "url(../assets/paper.png)", "../url(assets/scissors.png)", "url(../assets/lizard.png)", "url(../assets/spock.png)",];
+var imgChoices = ["url(../assets/rock.png)", "url(../assets/paper.png)", "url(../assets/scissors.png)", "url(../assets/lizard.png)", "url(../assets/spock.png)"];
 
-//fun descriptions
+//fun descriptions for end results
 var rockAndRock = "Rocks can't hurt rocks! :|";
 var rockAndPaper = "Your rock got covered by paper :(";
 var rockAndScissors = "Your rock crushed scissors :)";
@@ -39,11 +40,8 @@ var spockAndSpock = "Spocks can't hurt spocks! :| Live long and prosper";
 
 /*Important variables*/
 var winNum = 0;
-var winPer = 0;
 var loseNum = 0;
-var losePer = 0;
 var tieNum = 0;
-var tiePer = 0;
 
 /*STARTS GAME*/
 function gameStart() {
@@ -51,13 +49,14 @@ function gameStart() {
     countdown();
 }
 
-//Countdown timer from 3 + reset
+//Countdown timer from 3 + reset call
 function countdown() {
     setTimeout(function () { loadNum(2); }, 400);
     setTimeout(function () { loadNum(1); }, 800);
     setTimeout(function () {
         loadNum(0);
         loadState("Choose hand!", "state3");
+        spinHand([3, 4]);
     }, 1200)
     setTimeout(function () { loadNum(3); }, 1600);
 }
@@ -66,35 +65,31 @@ function loadNum(num) {
     document.getElementById("timeNum").innerHTML = num;
 }
 
-//Calculation
-function changePercents() {
+function showPercent() { // Calculate and display scores as a percentage
     var sum = winNum + loseNum + tieNum;
     if (sum != 0) {
-        winPer = Math.round(winNum / sum * 100);
-        losePer = Math.round(loseNum / sum * 100);
-        tiePer = Math.round(tieNum / sum * 100);
+        document.getElementById("wins").innerHTML = Math.round(winNum / sum * 100) + "%";
+        document.getElementById("loses").innerHTML = Math.round(loseNum / sum * 100) + "%";
+        document.getElementById("ties").innerHTML = Math.round(tieNum / sum * 100) + "%";
     } else {
-        winPer = 0;
-        losePer = 0;
-        tiePer = 0;
+        document.getElementById("wins").innerHTML = 0 + "%";
+        document.getElementById("loses").innerHTML = 0 + "%";
+        document.getElementById("ties").innerHTML = 0 + "%";
     }
-    console.log(winPer);
 }
 
-function showPercent() {
-    document.getElementById("wins").innerHTML = winPer + "%";
-    document.getElementById("loses").innerHTML = losePer + "%";
-    document.getElementById("ties").innerHTML = tiePer + "%";
-}
-
-//Function to change CPUs hand *Only visually*
-function spinHand(slideCount) {
-    slideCount++;
-    if (slideCount >= 5) {
-        slideCount = 0;
+function spinHand(lastImgs) {
+    var imgIndex = lastImgs[0];
+    while (lastImgs.includes(imgIndex)) {
+        imgIndex = Math.floor(Math.random() * 5);
     }
-    document.getElementById("cpuImg").style.backgroundImage = imgChoices[slideCount];
-    setTimeout(function () { spinHand(slideCount); }, 200);
+    document.getElementById("cpuImg").style.backgroundImage = imgChoices[imgIndex];
+    var newImgs = lastImgs;
+    newImgs.unshift(imgIndex);
+    newImgs.pop();
+    if (state == "state3") {
+        setTimeout(function () { spinHand(newImgs); }, 100);
+    }
 }
 
 //Data handling
@@ -134,7 +129,6 @@ function loadData() {
     } catch (err) {
         console.log("localStorage not supported " + err);
     }
-    changePercents();
 }
 
 //Updates variables/scores and results
@@ -155,7 +149,7 @@ function findWinner(choice) {
     var color;
     if (userChoice != cpuChoice) {
         var loseOp = "beats" + userChoice;
-        if (cpuChoice == window[loseOp][0] || cpuChoice == window[loseOp][1]) {
+        if (window[loseOp].includes(cpuChoice)) {
             result = "You lost...";
             incStoredValue("lose");
             color = "#D54040";
@@ -183,9 +177,10 @@ function loadState(stringVal, stateVal) {
     }
     document.getElementById(stateVal).style.display = "inline-block";
     document.title = "RPSLS - " + stringVal;
+    state = stateVal;
 }
 
-//Listeners
+//Listeners (Not inline with the html buttons so I can pass complex parameters)
 window.onload = function () {
     document.getElementById("startGameButton").addEventListener("click", gameStart);
     document.getElementById("headerHover").addEventListener("mouseover", showPercent);
@@ -204,5 +199,4 @@ window.onload = function () {
     document.getElementById("resetButton").addEventListener("click", resetData);
     loadData();
     displayData();
-    spinHand(0);
 }
