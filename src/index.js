@@ -8,7 +8,7 @@ var beatsscissors = ["rock", "spock"];
 var beatslizard = ["scissors", "rock"];
 var beatsspock = ["lizard", "paper"];
 
-//5 images to cycle
+//5 images to cycle through
 var imgChoices = ["url(../assets/rock.png)", "url(../assets/paper.png)", "url(../assets/scissors.png)", "url(../assets/lizard.png)", "url(../assets/spock.png)"];
 
 //fun descriptions for end results
