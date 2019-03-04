@@ -51,14 +51,20 @@ function gameStart() {
 
 //Countdown timer from 3 + reset call
 function countdown() {
-    setTimeout(function () { loadNum(2); }, 400);
-    setTimeout(function () { loadNum(1); }, 800);
+    setTimeout(function () {
+        loadNum(2);
+    }, 400);
+    setTimeout(function () {
+        loadNum(1);
+    }, 800);
     setTimeout(function () {
         loadNum(0);
         loadState("Choose hand!", "state3");
         spinHand([3, 4]);
     }, 1200)
-    setTimeout(function () { loadNum(3); }, 1600);
+    setTimeout(function () {
+        loadNum(3);
+    }, 1600);
 }
 
 function loadNum(num) {
@@ -88,7 +94,9 @@ function spinHand(lastImgs) {
     newImgs.unshift(imgIndex);
     newImgs.pop();
     if (state == "state3") {
-        setTimeout(function () { spinHand(newImgs); }, 100);
+        setTimeout(function () {
+            spinHand(newImgs);
+        }, 100);
     }
 }
 
