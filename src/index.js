@@ -197,6 +197,7 @@ window.onload = function () {
     document.getElementById("startRules").addEventListener("click", function () { loadState("Rules", "rulePage"); });
     document.getElementById("cancelbutton").addEventListener("click", function () { loadState("Welcome", "homePage"); });
     document.getElementById("cancelbutton2").addEventListener("click", function () { loadState("Welcome", "homePage"); });
+    document.getElementById("cancelbutton3").addEventListener("click", function () { loadState("Welcome", "homePage"); });
     document.getElementById("rockButton").addEventListener("click", function () { findWinner("rock"); });
     document.getElementById("paperButton").addEventListener("click", function () { findWinner("paper"); });
     document.getElementById("scissorsButton").addEventListener("click", function () { findWinner("scissors"); });
@@ -205,6 +206,7 @@ window.onload = function () {
     document.getElementById("optionButton1").addEventListener("click", gameStart);
     document.getElementById("optionButton2").addEventListener("click", function () { loadState("Welcome", "homePage"); });
     document.getElementById("resetButton").addEventListener("click", resetData);
+    document.getElementById("statsPageButton").addEventListener("click", function () { loadState("Simulations & Statistics", "statsHomePage"); });
     loadData();
     displayData();
 }
