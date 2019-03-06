@@ -1,5 +1,5 @@
 var choices = ["rock", "paper", "scissors", "lizard", "spock"];
-var state = "state0";
+var state = "homePage";
 
 //Arrays to determine which strings beat which string
 var beatsrock = ["paper", "spock"];
@@ -45,7 +45,7 @@ var tieNum = 0;
 
 /*STARTS GAME*/
 function gameStart() {
-    loadState("Game is starting!", "state2");
+    loadState("Game is starting!", "countdownPage");
     countdown();
 }
 
@@ -59,7 +59,7 @@ function countdown() {
     }, 800);
     setTimeout(function () {
         loadNum(0);
-        loadState("Choose hand!", "state3");
+        loadState("Choose hand!", "choicePage");
         spinHand([3, 4]);
     }, 1200)
     setTimeout(function () {
@@ -93,7 +93,7 @@ function spinHand(lastImgs) {
     var newImgs = lastImgs;
     newImgs.unshift(imgIndex);
     newImgs.pop();
-    if (state == "state3") {
+    if (state == "choicePage") {
         setTimeout(function () {
             spinHand(newImgs);
         }, 100);
@@ -173,7 +173,7 @@ function findWinner(choice) {
     }
     description = userChoice + "And" + newCpu;
     document.getElementById("winner").style.color = color;
-    loadState("Game results!", "state4");
+    loadState("Game results!", "resultPage");
     updateScores(description, result);
 }
 
@@ -193,17 +193,17 @@ window.onload = function () {
     document.getElementById("startGameButton").addEventListener("click", gameStart);
     document.getElementById("headerHover").addEventListener("mouseover", showPercent);
     document.getElementById("headerHover").addEventListener("mouseleave", function () { loadData(); displayData() });
-    document.getElementById("startStateOne").addEventListener("click", function () { loadState("Ready to begin?", "state1"); });
-    document.getElementById("startRules").addEventListener("click", function () { loadState("Rules", "rules"); });
-    document.getElementById("cancelbutton").addEventListener("click", function () { loadState("Welcome", "state0"); });
-    document.getElementById("cancelbutton2").addEventListener("click", function () { loadState("Welcome", "state0"); });
+    document.getElementById("startStateOne").addEventListener("click", function () { loadState("Ready to begin?", "gameStartPage"); });
+    document.getElementById("startRules").addEventListener("click", function () { loadState("Rules", "rulePage"); });
+    document.getElementById("cancelbutton").addEventListener("click", function () { loadState("Welcome", "homePage"); });
+    document.getElementById("cancelbutton2").addEventListener("click", function () { loadState("Welcome", "homePage"); });
     document.getElementById("rockButton").addEventListener("click", function () { findWinner("rock"); });
     document.getElementById("paperButton").addEventListener("click", function () { findWinner("paper"); });
     document.getElementById("scissorsButton").addEventListener("click", function () { findWinner("scissors"); });
     document.getElementById("lizardButton").addEventListener("click", function () { findWinner("lizard"); });
     document.getElementById("spockButton").addEventListener("click", function () { findWinner("spock"); });
     document.getElementById("optionButton1").addEventListener("click", gameStart);
-    document.getElementById("optionButton2").addEventListener("click", function () { loadState("Welcome", "state0"); });
+    document.getElementById("optionButton2").addEventListener("click", function () { loadState("Welcome", "homePage"); });
     document.getElementById("resetButton").addEventListener("click", resetData);
     loadData();
     displayData();
