@@ -1,47 +1,47 @@
-var choices = ["rock", "paper", "scissors", "lizard", "spock"];
-var state = "homePage";
-
-//Arrays to determine which strings beat which string
-var beatsrock = ["paper", "spock"];
-var beatspaper = ["scissors", "lizard"];
-var beatsscissors = ["rock", "spock"];
-var beatslizard = ["scissors", "rock"];
-var beatsspock = ["lizard", "paper"];
-
+//The 5 choices
+const CHOICES = ["rock", "paper", "scissor", "lizard", "spock"];
 //5 images to cycle through
-var imgChoices = ["url(../assets/rock.png)", "url(../assets/paper.png)", "url(../assets/scissors.png)", "url(../assets/lizard.png)", "url(../assets/spock.png)"];
+const IMAGECHOICES = ["url(../assets/rock.png)", "url(../assets/paper.png)", "url(../assets/scissors.png)", "url(../assets/lizard.png)", "url(../assets/spock.png)"];
 
 //fun descriptions for end results
-var rockAndRock = "Rocks can't hurt rocks! :|";
-var rockAndPaper = "Your rock got covered by paper :(";
-var rockAndScissors = "Your rock crushed scissors :)";
-var rockAndLizard = "Your rock crushed lizard :)";
-var rockAndSpock = "Your rock was vaporized by spock :(";
-var paperAndRock = "Your paper covered rock :)";
-var paperAndPaper = "Paper can't hurt paper! :|";
-var paperAndScissors = "Your paper was cut by scissors :(";
-var paperAndLizard = "Your paper was eaten by lizard :(";
-var paperAndSpock = "Your paper disproved spock :)";
-var scissorsAndRock = "Your scissors got crushed by rock :(";
-var scissorsAndPaper = "Your scissors cut paper :)";
-var scissorsAndScissors = "Scissors can't hurt scissors! :|";
-var scissorsAndLizard = "Your scissors decapitated lizard :)";
-var scissorsAndSpock = "Your scissors were smashed by spock :(";
-var lizardAndRock = "Your lizard was crushed by rock :(";
-var lizardAndPaper = "Your lizard ate the paper :)";
-var lizardAndScissors = "Your lizard was decapitated by scissors :(";
-var lizardAndLizard = "Lizards can't hurt lizards! :|";
-var lizardAndSpock = "Your lizard poisoned spock :)";
-var spockAndRock = "Your spock vaporized rock :)";
-var spockAndPaper = "Your spock was disproved by paper :(";
-var spockAndScissors = "Your spock smashed scissors :)";
-var spockAndLizard = "Your spock was poisoned by lizard";
-var spockAndSpock = "Spocks can't hurt spocks! :| Live long and prosper";
+const DESCRIPTIONS = {
+    rockAndPaper: "Your rock got covered by paper :(",
+    rockAndScissor: "Your rock crushed scissors :)",
+    rockAndLizard: "Your rock crushed lizard :)",
+    rockAndSpock: "Your rock was vaporized by spock :(",
+    paperAndRock: "Your paper covered rock :)",
+    paperAndScissor: "Your paper was cut by scissors :(",
+    paperAndLizard: "Your paper was eaten by lizard :(",
+    paperAndSpock: "Your paper disproved spock :)",
+    scissorAndRock: "Your scissors got crushed by rock :(",
+    scissorAndPaper: "Your scissors cut paper :)",
+    scissorAndLizard: "Your scissors decapitated lizard :)",
+    scissorAndSpock: "Your scissors were smashed by spock :(",
+    lizardAndRock: "Your lizard was crushed by rock :(",
+    lizardAndPaper: "Your lizard ate the paper :)",
+    lizardAndScissor: "Your lizard was decapitated by scissors :(",
+    lizardAndSpock: "Your lizard poisoned spock :)",
+    spockAndRock: "Your spock vaporized rock :)",
+    spockAndPaper: "Your spock was disproved by paper :(",
+    spockAndScissor: "Your spock smashed scissors :)",
+    spockAndLizard: "Your spock was poisoned by lizard :("
+}
+
+//Arrays to determine which strings beat which string
+const BEATCONDITIONS = {
+    beatsrock: ["paper", "spock"],
+    beatspaper: ["scissor", "lizard"],
+    beatsscissor: ["rock", "spock"],
+    beatslizard: ["scissor", "rock"],
+    beatsspock: ["lizard", "paper"]
+}
 
 /*Important variables*/
-var winNum = 0;
-var loseNum = 0;
-var tieNum = 0;
+let winNum = 0;
+let loseNum = 0;
+let tieNum = 0;
+
+let state = "homePage";
 
 /*STARTS GAME*/
 function gameStart() {
@@ -71,8 +71,9 @@ function loadNum(num) {
     document.getElementById("timeNum").innerHTML = num;
 }
 
-function showPercent() { // Calculate and display scores as a percentage
-    var sum = winNum + loseNum + tieNum;
+// Calculates and displays scores as a percentage
+function showPercent() {
+    const sum = winNum + loseNum + tieNum;
     if (sum != 0) {
         document.getElementById("wins").innerHTML = Math.round(winNum / sum * 100) + "%";
         document.getElementById("loses").innerHTML = Math.round(loseNum / sum * 100) + "%";
@@ -84,18 +85,23 @@ function showPercent() { // Calculate and display scores as a percentage
     }
 }
 
-function spinHand(lastImgs) {
-    var imgIndex = lastImgs[0];
-    while (lastImgs.includes(imgIndex)) {
-        imgIndex = Math.floor(Math.random() * 5);
+function getPercent(number, sum) {
+    return Math.round(number / sum)
+}
+
+// Function that chooses random (but not of last 3 chosen) image to give the effect of a thinking computer
+function spinHand(lastImages) {
+    let imageIndex = lastImages[0];
+    while (lastImages.includes(imageIndex)) {
+        imageIndex = Math.floor(Math.random() * 5);
     }
-    document.getElementById("cpuImg").style.backgroundImage = imgChoices[imgIndex];
-    var newImgs = lastImgs;
-    newImgs.unshift(imgIndex);
-    newImgs.pop();
+    document.getElementById("cpuImg").style.backgroundImage = IMAGECHOICES[imageIndex];
+    let newImages = lastImages;
+    newImages.unshift(imageIndex);
+    newImages.pop();
     if (state == "choicePage") {
         setTimeout(function () {
-            spinHand(newImgs);
+            spinHand(newImages);
         }, 100);
     }
 }
@@ -140,24 +146,23 @@ function loadData() {
 }
 
 //Updates variables/scores and results
-function updateScores(desc, result) {
+function updateScores(description, result) {
     document.getElementById("winner").innerHTML = result;
-    if (window[desc]) {
-        document.getElementById("resultdesc").innerHTML = window[desc];
-    }
+    document.getElementById("resultdesc").innerHTML = description;
     loadData();
     displayData();
 }
 
-//Finds winner based on choices
-function findWinner(choice) {
-    var userChoice = choice;
-    var cpuChoice = choices[Math.floor(Math.random() * choices.length)];
+//Finds winner based on userChoice and random cpuChoice
+function findWinner(userChoice) {
+    var cpuChoice = CHOICES[Math.floor(Math.random() * CHOICES.length)];
     var newCpu = cpuChoice.charAt(0).toUpperCase() + cpuChoice.slice(1);
     var color;
+    var description;
     if (userChoice != cpuChoice) {
         var loseOp = "beats" + userChoice;
-        if (window[loseOp].includes(cpuChoice)) {
+        description = DESCRIPTIONS[userChoice + "And" + newCpu];
+        if (BEATCONDITIONS[loseOp].includes(cpuChoice)) {
             result = "You lost...";
             incStoredValue("lose");
             color = "#D54040";
@@ -167,46 +172,73 @@ function findWinner(choice) {
             color = "#55AA55";
         }
     } else {
+        description = newCpu + "s can't hurt " + userChoice + "s";
         result = "It's a tie!";
         incStoredValue("tie");
         color = "#00A085";
     }
-    description = userChoice + "And" + newCpu;
     document.getElementById("winner").style.color = color;
     loadState("Game results!", "resultPage");
     updateScores(description, result);
 }
 
 //Loads states of the website
-function loadState(stringVal, stateVal) {
+function loadState(heading, stateVal) {
     a = document.getElementsByTagName("section");
     for (i = 0; i < a.length; i++) {
         a[i].style.display = "none";
     }
     document.getElementById(stateVal).style.display = "inline-block";
-    document.title = "RPSLS - " + stringVal;
+    document.title = "RPSLS - " + heading;
     state = stateVal;
 }
 
-//Listeners (Not inline with the html buttons so I can pass complex parameters)
+//Listeners (Not inline with the html buttons so I can pass more complex parameters)
 window.onload = function () {
     document.getElementById("startGameButton").addEventListener("click", gameStart);
     document.getElementById("headerHover").addEventListener("mouseover", showPercent);
-    document.getElementById("headerHover").addEventListener("mouseleave", function () { loadData(); displayData() });
-    document.getElementById("startStateOne").addEventListener("click", function () { loadState("Ready to begin?", "gameStartPage"); });
-    document.getElementById("startRules").addEventListener("click", function () { loadState("Rules", "rulePage"); });
-    document.getElementById("cancelbutton").addEventListener("click", function () { loadState("Welcome", "homePage"); });
-    document.getElementById("cancelbutton2").addEventListener("click", function () { loadState("Welcome", "homePage"); });
-    document.getElementById("cancelbutton3").addEventListener("click", function () { loadState("Welcome", "homePage"); });
-    document.getElementById("rockButton").addEventListener("click", function () { findWinner("rock"); });
-    document.getElementById("paperButton").addEventListener("click", function () { findWinner("paper"); });
-    document.getElementById("scissorsButton").addEventListener("click", function () { findWinner("scissors"); });
-    document.getElementById("lizardButton").addEventListener("click", function () { findWinner("lizard"); });
-    document.getElementById("spockButton").addEventListener("click", function () { findWinner("spock"); });
+    document.getElementById("headerHover").addEventListener("mouseleave", function () {
+        loadData();
+        displayData();
+    });
+    document.getElementById("startStateOne").addEventListener("click", function () {
+        loadState("Ready to begin?", "gameStartPage");
+    });
+    document.getElementById("startRules").addEventListener("click", function () {
+        loadState("Rules", "rulePage");
+    });
+    document.getElementById("cancelbutton").addEventListener("click", function () {
+        loadState("Welcome", "homePage");
+    });
+    document.getElementById("cancelbutton2").addEventListener("click", function () {
+        loadState("Welcome", "homePage");
+    });
+    document.getElementById("cancelbutton3").addEventListener("click", function () {
+        loadState("Welcome", "homePage");
+    });
+    document.getElementById("rockButton").addEventListener("click", function () {
+        findWinner("rock");
+    });
+    document.getElementById("paperButton").addEventListener("click", function () {
+        findWinner("paper");
+    });
+    document.getElementById("scissorsButton").addEventListener("click", function () {
+        findWinner("scissor");
+    });
+    document.getElementById("lizardButton").addEventListener("click", function () {
+        findWinner("lizard");
+    });
+    document.getElementById("spockButton").addEventListener("click", function () {
+        findWinner("spock");
+    });
     document.getElementById("optionButton1").addEventListener("click", gameStart);
-    document.getElementById("optionButton2").addEventListener("click", function () { loadState("Welcome", "homePage"); });
+    document.getElementById("optionButton2").addEventListener("click", function () {
+        loadState("Welcome", "homePage");
+    });
     document.getElementById("resetButton").addEventListener("click", resetData);
-    document.getElementById("statsPageButton").addEventListener("click", function () { loadState("Simulations & Statistics", "statsHomePage"); });
+    document.getElementById("statsPageButton").addEventListener("click", function () {
+        loadState("Simulations & Statistics", "statsHomePage");
+    });
     loadData();
     displayData();
 }

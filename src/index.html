@@ -20,77 +20,78 @@
 					<div class="unselectable" id="resetButton">&nbsp;Reset&nbsp;</div>
 				</text>
 		</header>
+		<div id="sectionHolder">
+			<section id="homePage">
+				<h1>Rock Paper Scissors Lizard Spock</h1>
+				<center>
+					<div class="startbutton unselectable" id="startStateOne">Play Against a Computer</div>
+					<div class="startbutton unselectable" id="statsPageButton">Simulations & Statistics</div>
+					<div class="startbutton unselectable" id="startRules">Rules</div>
+					<div class="basicText" style="color: #00A085">Javascript must be enabled to play this wonderful game!</div>
+				</center>
+			</section>
 
-		<section id="homePage">
-			<h1>Rock Paper Scissors Lizard Spock</h1>
-			<center>
-				<div class="startbutton unselectable" id="startStateOne">Play Against a Computer</div>
-				<div class="startbutton unselectable" id="statsPageButton">Simulations & Statistics</div>
-				<div class="startbutton unselectable" id="startRules">Rules</div>
-				<div class="basicText" style="color: #00A085">Javascript must be enabled to play this wonderful game!</div>
-			</center>
-		</section>
+			<section id="gameStartPage">
+				<h1>What do you want to do?</h1>
+				<center>
+					<div class="startbutton unselectable" id="startGameButton">Start Game</div>
+					<div class="startbutton unselectable" id="cancelbutton">Cancel</div>
+				</center>
+			</section>
 
-		<section id="gameStartPage">
-			<h1>What do you want to do?</h1>
-			<center>
-				<div class="startbutton unselectable" id="startGameButton">Start Game</div>
-				<div class="startbutton unselectable" id="cancelbutton">Cancel</div>
-			</center>
-		</section>
+			<section id="countdownPage">
+				<h1>Choose your hand in...</h1>
+				<center>
+					<div class="unselectable" id="timeNum">3</div>
+				</center>
+			</section>
 
-		<section id="countdownPage">
-			<h1>Choose your hand in...</h1>
-			<center>
-				<div class="unselectable" id="timeNum">3</div>
-			</center>
-		</section>
-
-		<section id="choicePage">
-			<h1>Pick your hand!</h1>
-			<div id="colHold">
-				<div id="col1">
-					<center>
-						<div class="button unselectable" id="rockButton">Rock</div>
-						<div class="button unselectable" id="paperButton">Paper</div>
-						<div class="button unselectable" id="scissorsButton">Scissors</div>
-						<div class="button unselectable" id="lizardButton">Lizard</div>
-						<div class="button unselectable" id="spockButton">Spock</div>
-					</center>
+			<section id="choicePage">
+				<h1>Pick your hand!</h1>
+				<div id="colHold">
+					<div id="col1">
+						<center>
+							<div class="button unselectable" id="rockButton">Rock</div>
+							<div class="button unselectable" id="paperButton">Paper</div>
+							<div class="button unselectable" id="scissorsButton">Scissors</div>
+							<div class="button unselectable" id="lizardButton">Lizard</div>
+							<div class="button unselectable" id="spockButton">Spock</div>
+						</center>
+					</div>
+					<div id="col2">
+						<div id="cpuImg"></div>
+					</div>
 				</div>
-				<div id="col2">
-					<div id="cpuImg"></div>
-				</div>
-			</div>
-		</section>
+			</section>
 
-		<section id="resultPage">
-			<h1 id="winner"></h1>
-			<center>
-				<div class="basicText" id="resultdesc"></div>
-				<div class="startbutton unselectable" id="optionButton1">Play again &#8635;</div>
-				<div class="startbutton unselectable" id="optionButton2">Return home</div>
-			</center>
-		</section>
+			<section id="resultPage">
+				<h1 id="winner"></h1>
+				<center>
+					<div class="basicText" id="resultdesc"></div>
+					<div class="startbutton unselectable" id="optionButton1">Play again &#8635;</div>
+					<div class="startbutton unselectable" id="optionButton2">Return home</div>
+				</center>
+			</section>
 
-		<section id="rulePage">
-			<h1>RPSLS Rules</h1>
-			<center>
-				<div class="basicText" id="narrowMargin">Scissors cuts paper. Paper covers rock. Rock crushes lizard.
-					Lizard poisons Spock. Spock smashes scissors. Scissors decapitates lizard.
-					Lizard eats paper. Paper disproves Spock. Spock vaporizes rock. Rock crushes scissors.</div>
-				<div class="startbutton unselectable" id="cancelbutton2" style="color: #00A085">Return home</div>
-			</center>
-		</section>
+			<section id="rulePage">
+				<h1>RPSLS Rules</h1>
+				<center>
+					<div class="basicText" id="narrowMargin">Scissors cuts paper. Paper covers rock. Rock crushes lizard.
+						Lizard poisons Spock. Spock smashes scissors. Scissors decapitates lizard.
+						Lizard eats paper. Paper disproves Spock. Spock vaporizes rock. Rock crushes scissors.</div>
+					<div class="startbutton unselectable" id="cancelbutton2" style="color: #00A085">Return home</div>
+				</center>
+			</section>
 
-		<section id="statsHomePage">
-			<h1>Simulations & Statistics</h1>
-			<center>
-				<div class="startbutton unselectables">Run Simulations</div>
-				<div class="startbutton unselectables">View Existing Game Stats</div>
-				<div class="startbutton unselectable" id="cancelbutton3" style="color: #00A085">Return home</div>
-			</center>
-		</section>
+			<section id="statsHomePage">
+				<h1>Simulations & Statistics</h1>
+				<center>
+					<div class="startbutton unselectables">Run Simulations</div>
+					<div class="startbutton unselectables">View Existing Game Stats</div>
+					<div class="startbutton unselectable" id="cancelbutton3" style="color: #00A085">Return home</div>
+				</center>
+			</section>
+		</div>
 	</div>
 </body>
 
