@@ -16,5 +16,5 @@ Click on this [html preview](https://htmlpreview.github.io/?https://github.com/a
 
 ### Notes
 
-* Probably relies too heavily on strings
+* Probably relies too heavily on string manipulation
 * Constant work in progress
