@@ -239,6 +239,14 @@ window.onload = function () {
     document.getElementById("statsPageButton").addEventListener("click", function () {
         loadState("Simulations & Statistics", "statsHomePage");
     });
+    document.getElementById("existingGameStatsPageButton").addEventListener("click", function () {
+        loadState("Existing Game Stats", "existingGameStatsPage");
+    });
+    document.getElementById("statsPageButton2").addEventListener("click", function () {
+        loadState("Simulations & Statistics", "statsHomePage");
+    });
     loadData();
     displayData();
+
+    
 }
