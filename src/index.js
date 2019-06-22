@@ -155,14 +155,14 @@ function updateScores(description, result) {
 
 //Finds winner based on userChoice and random cpuChoice
 function findWinner(userChoice) {
-    var cpuChoice = CHOICES[Math.floor(Math.random() * CHOICES.length)];
-    var newCpu = cpuChoice.charAt(0).toUpperCase() + cpuChoice.slice(1);
-    var color;
-    var description;
+    let cpuChoice = CHOICES[Math.floor(Math.random() * CHOICES.length)];
+    const NEWCPU = cpuChoice.charAt(0).toUpperCase() + cpuChoice.slice(1);
+    let color;
+    let description;
     if (userChoice != cpuChoice) {
-        var loseOp = "beats" + userChoice;
-        description = DESCRIPTIONS[userChoice + "And" + newCpu];
-        if (BEATCONDITIONS[loseOp].includes(cpuChoice)) {
+        const LOSEOP = "beats" + userChoice;
+        description = DESCRIPTIONS[userChoice + "And" + NEWCPU];
+        if (BEATCONDITIONS[LOSEOP].includes(cpuChoice)) {
             result = "You lost...";
             incStoredValue("lose");
             color = "#D54040";
@@ -172,7 +172,7 @@ function findWinner(userChoice) {
             color = "#55AA55";
         }
     } else {
-        description = newCpu + "s can't hurt " + userChoice + "s";
+        description = NEWCPU + "s can't hurt " + userChoice + "s";
         result = "It's a tie!";
         incStoredValue("tie");
         color = "#00A085";
