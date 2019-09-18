@@ -10,9 +10,7 @@ RPSLS is a basic game project I work on in my freetime
 
 ## Running
 
-Just download zip, extract and open HTML file
-OR
-Click on this [html preview](https://htmlpreview.github.io/?https://github.com/acol728/rock-paper-scissors-lizard-spock/blob/master/src/index.html)
+Just download zip, extract and open HTML file in a browser
 
 ### Notes
 
