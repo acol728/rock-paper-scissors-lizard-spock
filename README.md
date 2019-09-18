@@ -18,6 +18,6 @@ Just download zip, extract and open HTML file in a browser
 
 ### Notes
 
-* Constant work in progress
+* Work in progress
 
 ![alt text](https://i.ibb.co/vw3Y4Lm/Screenshot3.png "Result screen")
