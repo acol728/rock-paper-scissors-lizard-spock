@@ -3,7 +3,7 @@
 RPSLS is a basic game project I work on in my freetime
 Simple demonstration of me working with javascript
 
-![Home screen](https://ibb.co/smKH9sQ)
+![alt text](https://ibb.co/smKH9sQ "Home screen")
 
 ## Built with
 
