@@ -213,9 +213,6 @@ window.onload = function () {
     document.getElementById("cancelbutton2").addEventListener("click", function () {
         loadState("Welcome", "homePage");
     });
-    document.getElementById("cancelbutton3").addEventListener("click", function () {
-        loadState("Welcome", "homePage");
-    });
     document.getElementById("rockButton").addEventListener("click", function () {
         findWinner("rock");
     });
@@ -236,17 +233,8 @@ window.onload = function () {
         loadState("Welcome", "homePage");
     });
     document.getElementById("resetButton").addEventListener("click", resetData);
-    document.getElementById("statsPageButton").addEventListener("click", function () {
-        loadState("Simulations & Statistics", "statsHomePage");
-    });
-    document.getElementById("existingGameStatsPageButton").addEventListener("click", function () {
-        loadState("Existing Game Stats", "existingGameStatsPage");
-    });
-    document.getElementById("statsPageButton2").addEventListener("click", function () {
-        loadState("Simulations & Statistics", "statsHomePage");
-    });
+
     loadData();
     displayData();
 
-    
 }
