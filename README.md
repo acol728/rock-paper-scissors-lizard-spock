@@ -1,6 +1,6 @@
 # Rock Paper Scissors Lizard Spock
 
-RPSLS is a basic game project I occasionally work on in my freetime. It can exist as a simple demonstration of javascript
+RPSLS is a basic game project I occasionally work on in my freetime.
 
 ![alt text](https://i.ibb.co/W5nr0Kd/Screenshot1.png "Home screen")
 
